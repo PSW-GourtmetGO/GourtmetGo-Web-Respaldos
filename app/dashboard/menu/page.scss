@@ -1,0 +1,123 @@
+.contenedorPaginasDashboard {
+    .informacionPlatos {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        font-family: "Raleway", sans-serif;
+        .contenedorBuscador{
+            width: 30vw;
+        }
+    }
+
+    .contenidoMenu {
+        font-family: "Raleway", sans-serif;
+        .botonesPlatos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            margin-bottom: 20px;
+
+            .contenedorEtiquetas {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                background-color: #274C5B;
+                width: fit-content;
+                padding: 10px;
+                border-radius: 15px;
+                color: white;
+                overflow-y: auto;
+
+                .etiqueta {
+                    background-color: #00af662a;
+                    padding: 5px 20px;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                }
+
+                .etiqueta:hover {
+                    background-color: #00AF66;
+                }
+
+                .etiqueta.selected {
+                    background-color: #00AF66;
+                }
+            }
+            
+            .btnPlato{
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+            }
+        }
+        .listaPlatos{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            row-gap: 20px;
+            .contenedorPlato{
+                display: flex;
+                justify-content: center;
+                .tarjetaPlato{
+                    margin-top: 50px;
+                    .imagenPlato{
+                        /*background: linear-gradient(to bottom, white 25%, #274c5b 25%, #274c5b 100%);*/
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: #274C5B;
+                        position: relative;
+                        height: 100px;
+                        border-top-left-radius: 10px;
+                        border-top-right-radius: 10px;
+                        .fotoPlato{
+                            top: -1;                            
+                            position: absolute;
+                            border-radius: 50%;
+                            transition: ease-in-out 0.7s;
+                            -webkit-transition: ease-in-out 0.7s ;
+                        }
+                        .iconoSubirPlato{
+                            width: 100px;
+                            height: auto;
+                            transition: ease-in-out 0.7s;
+                            -webkit-transition: ease-in-out 0.7s ;
+                            opacity: 0;
+                        }
+                    }
+                    .imagenPlato:hover{
+                        .fotoPlato{
+                            scale: 1.1;
+                        }
+                        .iconoSubirPlato{
+                            opacity: 1;
+                            height: 200px;
+                            width: 200px;
+                            padding: 50px;
+                            border-radius: 50%;
+                            cursor: pointer;
+                            z-index: 50;
+                            background-color: #00AF66;
+                        }
+                    }
+                    .detallePlato{
+                        background-color: #274C5B;
+                        padding-top: 60px;
+                        padding-bottom: 20px;
+                        border-bottom-left-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                        text-align: center;
+                        color: #fff;
+                        .nombrePlato{
+                            font-weight: bold;
+                            font-size: 24px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

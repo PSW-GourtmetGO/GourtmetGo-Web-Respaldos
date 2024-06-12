@@ -1,0 +1,58 @@
+.contenedorPrincipal{
+    .contenedorRegistro{
+        font-family: "Raleway", sans-serif;
+        height: 100%;
+        padding: 70px 70px 0 70px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .portadasRegistro{
+            width: 50%;
+            height: auto;
+            .porta{
+                height: 70vh;
+                width: auto;
+                background-image: url("../../public/imagenes/imagenClientes.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                margin: 20px;
+            }
+        }
+        .contenedorFormularioRegistro{
+            width: 50%;
+            height: auto;
+            .encabezado{
+                text-align: center;
+                font-size: 28px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+            .formularioRegistro{
+                form{
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    column-gap: 20px;
+                    row-gap: 10px;
+                    .boton{
+                        grid-column: span 2;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px){
+    .contenedorPrincipal{
+        .contenedorRegistro{
+            .portadasRegistro{
+                display: none;
+            }
+            .contenedorFormularioRegistro{
+                width: 100%;
+            }
+        }
+    }
+}

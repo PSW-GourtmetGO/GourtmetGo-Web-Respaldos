@@ -1,0 +1,100 @@
+.contenedorDashboard {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+
+    .sidebar {
+        width: 6vw;
+        height: 100%;
+        background-color: #274C5B;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        gap: 50px;
+        overflow: hidden;
+        .logoSidebar {
+            width: 50%;
+            height: 10%;
+            img{
+                object-fit: contain;
+            }
+        }
+        
+        ul {
+            width: 90%;
+            height: 80%;
+            list-style: none;
+            right: 0;
+            margin-right: -10px;
+            .botonesSidebar{
+                height: 8vh;
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+                padding: 15px 0;
+                .iconosSidebar{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+        }
+        .salir {
+            height: 10%;
+        }
+    }
+    
+    
+    
+
+    .paginas {
+        width: calc(100vw - 80px);
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
+    .salir{
+            width: 50%;
+            height: auto;
+            background-color: rgba(255, 255, 255, 0.059);
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            a{
+                svg{
+                    height: 30px;
+                    width: auto;
+                }
+            }
+    }
+
+    .salir:hover{
+        background-color: rgb(21, 128, 61);
+    }
+
+    .paginas{
+        width: 94vw;
+        height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}
+
+.tooltipSidebar{
+    background-color: #00AF66;
+    box-shadow: none;
+}

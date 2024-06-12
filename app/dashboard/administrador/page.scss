@@ -1,0 +1,78 @@
+.contenedorPaginasDashboard{
+
+    .contenedorEncabezado{
+        display: flex;
+        flex-direction: column;
+        
+        .titulo{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-left: 20px;
+            margin-right: 150px;
+            margin-bottom: 20px;
+        }
+        
+    }
+    
+    .botonesAccionEmpleados{
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        align-items: center;
+        gap: 20px;
+
+        .contenedorBuscador{
+            width: 30vw;
+        }
+        .btnAgregar{
+            width: 20vw;
+        }
+    }
+
+    .tabla{
+        margin-top: 20px;
+        table{            
+            tbody{
+                tr{
+                    td{
+                        .contenedorBotonesAccion{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 20px;
+
+                            .btnAccion{
+                                border-radius: 50%;
+                                height: 40px;
+                                width: 40px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                transition: all 0.5s;
+                                -webkit-transition: all 0.5s;
+                            }
+
+                            .btnAccion:hover{
+                                scale: 1.1;
+                            }
+
+                            .iconoAccion{
+                                width: 20px;
+                                height: 20px;
+                            }
+    
+                            .btnEditar{
+                                background-color: #00AF66;
+                            }
+    
+                            .btnEliminar{
+                                background-color: #274C5B;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

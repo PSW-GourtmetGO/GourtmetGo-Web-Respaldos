@@ -1,0 +1,75 @@
+.contenedorNav{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #274C5B;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    position: fixed;
+    z-index: 999;
+    font-family: "Raleway", sans-serif;
+    .menuOpciones{
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+
+        .contenedorLogo{
+            .logo{
+                height: 50px;
+                width: auto;
+            }
+        }
+
+        .opciones{
+            display: flex;
+            align-items: center;
+            color: #fff;
+            ul{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 30px;
+                font-size: 22px;
+                transition:  0.5s ease;
+                li:hover{
+                    color: #00AF66;
+                }
+            }
+
+        }
+    }
+
+    .botones{
+        ul{
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            li{
+                padding: 10px 15px;
+                border-radius: 10px;
+                border: none;
+                color: white;
+                transition: all 0.5s;
+                    -webkit-transition: all 0.5s;
+            }
+
+            li:hover{
+                background-color: rgb(21, 128, 61);
+            }
+            
+            .ingresar{
+                background-color: #ffffff10;
+            }
+            
+            .registro{
+                background-color: #00AF66;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,56 @@
+.contenedorModal{
+    font-family: "Raleway", sans-serif;
+    .tarjetaModal{
+        .agregarCategoria{
+            width: 150px;
+            .botonVerde{
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.botonesAgregar{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.botonesAccion{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    .btnAccion{
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+    }
+
+    .btnAccion:hover{
+        scale: 1.1;
+    }
+
+    .iconoAccion{
+        width: 20px;
+        height: 20px;
+    }
+
+    .btnEditar{
+        background-color: #00AF66;
+    }
+    .btnEliminar{
+        background-color: #274C5B;
+    }
+}

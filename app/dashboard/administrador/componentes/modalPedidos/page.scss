@@ -1,0 +1,23 @@
+.contenedorModal{
+    font-family: "Raleway", sans-serif;
+    .tarjetaModal{
+        .cuerpoModalPedidos{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .informacionPedido{
+                .lineaInformacion{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    background-color: transparent;
+                    margin: 10px 0;
+                    padding: 10px;
+                    border: 1px solid rgb(172, 172, 172);
+                    border-radius: 7px;
+                }
+            }
+        }
+    }
+}

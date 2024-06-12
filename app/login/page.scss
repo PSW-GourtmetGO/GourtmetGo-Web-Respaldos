@@ -1,0 +1,91 @@
+.contenedorPrincipal{
+    .contenedorLoguin{
+        height: 100%;
+        padding: 70px 70px 0 70px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .portadasLoguin{
+            width: 50%;
+            .porta{
+                height: 70vh;
+                width: auto;
+                background-image: url("../../public/imagenes/imgLogin.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+            }
+        }
+
+        .contenedorFormularioLoguin{
+            width: 50%;
+            font-family: "Raleway", sans-serif;
+            display: flex;
+            flex-direction: column;
+
+            .encabezadoLoguin{
+                width: 100%;
+                font-weight: bold;
+                font-size: 30px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                img{
+                    width: 150px;
+                    height: auto;
+                }
+            }
+
+            .formularioLoguin{
+                margin: 10px 0;
+                form{
+                    div{
+                        margin-bottom: 20px;
+                    }
+                    p{
+                        text-align: right;
+                        transition: all 0.5s;
+                        -webkit-transition: all 0.5s;
+                    }
+                    p:hover{
+                        color: rgb(21, 128, 61);
+                        scale: 1.1;
+                        cursor: pointer;
+                    }
+                }
+                div.registrate{
+                    display: flex;
+                    justify-content: end;
+                    gap: 5px;
+                    .palabra{
+                        transition: all 0.5s;
+                        -webkit-transition: all 0.5s;
+                    }
+                    .palabra:hover{
+                        color: rgb(21, 128, 61);
+                        scale: 1.1;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width: 768px){
+    .contenedorPrincipal{
+        .contenedorLoguin{
+            .portadasLoguin{
+                display: none;
+            }
+            .contenedorFormularioLoguin{
+                width: 100%;
+            }
+        }
+    }
+}
+

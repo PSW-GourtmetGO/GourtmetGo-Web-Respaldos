@@ -1,0 +1,58 @@
+.contenedorPaginasDashboard{
+    .contenidoPagos{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .portadaPagos{
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            .imagenPagos{
+                width: 40vw;
+                height: auto;
+            }
+        }
+
+        .infoPagos{
+            width: 50%;
+            font-family: "Raleway", sans-serif;
+            p{
+                text-align: right;
+            }
+            .parrafo1{
+                font-size: 18px;
+                color: gray;
+            }
+            .parrafo2{
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .formularioPagos{
+                margin-top: 20px;
+                form{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px){
+    .contenedorPaginasDashboard{
+        .contenidoPagos{
+            flex-direction: column;
+            justify-content: center;
+            gap: 30px;
+            .portadaPagos{
+                width: 100%;
+            }
+            .infoPagos{
+                width: 100%;
+            }
+        }
+    }
+}

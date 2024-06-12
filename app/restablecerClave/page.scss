@@ -1,0 +1,70 @@
+.contenedorPrincipal{
+    .contenedorRestablecer{
+        height: 100%;
+        padding: 70px 70px 0 70px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .portadasRestablecer{
+            width: 50%;
+            .porta{
+                height: 70vh;
+                width: auto;
+                background-image: url("../../public/imagenes/imgLogin.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+            }
+        }
+
+        .formularioRestablecer{
+            width: 50%;
+            font-family: "Raleway", sans-serif;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .encabezadoRestablecer{
+                width: 100%;
+                font-weight: bold;
+                font-size: 30px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                img{
+                    width: 150px;
+                    height: auto;
+                }
+            }
+
+            .formulario{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+
+                form{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px){
+    .contenedorPrincipal{
+        .contenedorRestablecer{
+            .portadasRestablecer{
+                display: none;
+            }
+            .formularioRestablecer{
+                width: 100%;
+            }
+        }
+    }
+}
