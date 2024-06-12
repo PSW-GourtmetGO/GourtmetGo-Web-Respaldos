@@ -36,7 +36,7 @@ function Login() {
         localStorage.setItem('restauranteNOMBRE', userData.r_nombre);
         localStorage.setItem('persona', userData.p_id);
         localStorage.setItem('restauranteImagen', userData.r_imagen_base64);
-        localStorage.setItem('persona',userData.nombreP + " " + userData.apellidoP)
+        localStorage.setItem('personaNombre',userData.nombreP + " " + userData.apellidoP)
         if (userData.rol_id == 1){
             localStorage.setItem('plan', userData.plan);
         }

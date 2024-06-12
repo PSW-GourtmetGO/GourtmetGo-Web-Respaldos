@@ -48,7 +48,7 @@ const PerfilPage = () => {
       try {
         const response = await axios.get(
           `http://localhost:4500/api/Web/propietario/${localStorage.getItem(
-            "restauranteID"
+            "persona"
           )}`
         );
         const datosRestaurante = response.data[0];

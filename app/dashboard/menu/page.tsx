@@ -29,7 +29,7 @@ const MenuPage = () => {
   const [categorias, setCategorias] = useState([]);
   const [platos, setPlatos] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
-  const persona = localStorage.getItem('persona')
+  const persona = localStorage.getItem('personaNombre')
 
   useEffect(() => {
     const date = new Date();
