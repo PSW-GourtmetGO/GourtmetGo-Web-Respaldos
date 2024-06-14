@@ -1,7 +1,163 @@
-import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { Bounce, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+/* Modal */
+type Errors = {
+  name: string;
+  email: string;
+  phone: string;
+};
+type ModalProps = {
+  plan: string;
+  onClose: () => void;
+  onSubmit: () => void;
+};
 
+const Modal: React.FC<ModalProps> = ({ plan, onClose, onSubmit }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [errors, setErrors] = useState<Errors>({
+    name: "",
+    email: "",
+    phone: "",
+  });
+
+  const validateForm = () => {
+    const newErrors: Errors = {
+      name: "",
+      email: "",
+      phone: "",
+    };
+
+    if (!name) {
+      newErrors.name = "El nombre es obligatorio.";
+    } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+      newErrors.name = "El nombre solo debe contener letras.";
+    }
+
+    if (!email) {
+      newErrors.email = "El email es obligatorio.";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "El email no es válido.";
+    }
+
+    if (!phone) {
+      newErrors.phone = "El teléfono es obligatorio.";
+    } else if (!/^\d+$/.test(phone)) {
+      newErrors.phone = "El teléfono solo debe contener números.";
+    } else if (phone.length !== 10) {
+      newErrors.phone = "El teléfono debe tener 10 dígitos.";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).every(
+      (key) => !newErrors[key as keyof Errors]
+    );
+  };
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    if (validateForm()) {
+      onSubmit();
+      toast.success("Información enviada exitosamente", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      window.location.href = "/registro";
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+        <h2 className="text-xl font-semibold mb-4">Contacta a un asesor</h2>
+        <p className="mb-4">
+          Déjanos tus datos y un asesor se pondrá en contacto contigo para más
+          información sobre el plan <span className="font-bold">{plan}</span>.
+        </p>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-gray-700">Nombre:</label>
+            <input
+              type="text"
+              className="w-full p-2 border border-gray-300 rounded-lg"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+            {errors.name && (
+              <p className="text-red-500 text-sm">{errors.name}</p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">Email:</label>
+            <input
+              type="email"
+              className="w-full p-2 border border-gray-300 rounded-lg"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email}</p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700">Teléfono:</label>
+            <input
+              type="tel"
+              className="w-full p-2 border border-gray-300 rounded-lg"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+            {errors.phone && (
+              <p className="text-red-500 text-sm">{errors.phone}</p>
+            )}
+          </div>
+          <div className="flex justify-end space-x-4">
+            <button
+              type="button"
+              className="py-2 px-4 bg-gray-400 text-white rounded-lg"
+              onClick={onClose}
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              className="py-2 px-4 bg-[#7EB693] text-white rounded-lg"
+            >
+              Aceptar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 const Planes = () => {
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+  const openModal = (plan: any) => {
+    setSelectedPlan(plan);
+  };
+
+  const closeModal = () => {
+    setSelectedPlan(null);
+  };
+
+  const handleFormSubmit = () => {
+    closeModal();
+  };
+
   return (
     <div
       className="w-full grid grid-cols-5 grid-rows-auto pb-[100px]"
@@ -9,18 +165,17 @@ const Planes = () => {
     >
       <div className="ml-[100px] mt-16 col-start-1 col-span-2 row-start-2">
         <h1
-          className="text-[60px] leading-[72px] max-w-md  "
+          className="text-[60px] leading-[72px] max-w-md"
           style={{ fontFamily: "David Libre" }}
         >
           Planes
         </h1>
       </div>
       <div className="ml-[100px] mt-8 col-start-1 col-span-6 row-start-3">
-        {/* Detalle de planes */}
         <div>
           <section>
             <div className="w-[95%]">
-              <div className="space-y-8 lg:grid lg:grid-cols-3  sm:gap-6 xl:gap-10 lg:space-y-0 ">
+              <div className="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
                 {/* <!-- Plan 1 --> */}
                 <div
                   data-aos="fade-left"
@@ -48,7 +203,7 @@ const Planes = () => {
                       {/* <!-- List --> */}
                       <ul
                         role="list"
-                        className="mb-8 space-y-4 text-left text-black  transition-all duration-300 group-hover:text-white"
+                        className="mb-8 space-y-4 text-left text-black transition-all duration-300 group-hover:text-white"
                       >
                         <li className="flex items-center space-x-3">
                           {/* <!-- Icon --> */}
@@ -140,12 +295,12 @@ const Planes = () => {
                           </span>
                         </li>
                       </ul>
-                      <Link
-                        href="#"
+                      <button
+                        onClick={() => openModal("BASICO")}
                         className="py-2 px-5 bg-[#7EB693] rounded-lg"
                       >
                         Escoger plan
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -157,7 +312,7 @@ const Planes = () => {
                 >
                   <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:text-white hover:bg-[#274c5b] hover:text-white transition-all duration-300">
                     <div className="group">
-                      <h4 className="text-right text-sm font-bold text-black transition-all duration-300 group-hover:text-[#ff7a29] ">
+                      <h4 className="text-right text-sm font-bold text-black transition-all duration-300 group-hover:text-[#ff7a29]">
                         POPULAR
                       </h4>
                       <h3 className="mb-4 text-2xl font-semibold text-black transition-all duration-300 group-hover:text-white">
@@ -177,7 +332,7 @@ const Planes = () => {
                       {/* <!-- List --> */}
                       <ul
                         role="list"
-                        className="mb-8 space-y-4 text-left text-black  transition-all duration-300 group-hover:text-white"
+                        className="mb-8 space-y-4 text-left text-black transition-all duration-300 group-hover:text-white"
                       >
                         <li className="flex items-center space-x-3">
                           {/* <!-- Icon --> */}
@@ -269,12 +424,12 @@ const Planes = () => {
                           </span>
                         </li>
                       </ul>
-                      <Link
-                        href="#"
+                      <button
+                        onClick={() => openModal("POPULAR")}
                         className="py-2 px-5 bg-[#7EB693] rounded-lg"
                       >
                         Escoger plan
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -306,7 +461,7 @@ const Planes = () => {
                       {/* <!-- List --> */}
                       <ul
                         role="list"
-                        className="mb-8 space-y-4 text-left text-black  transition-all duration-300 group-hover:text-white"
+                        className="mb-8 space-y-4 text-left text-black transition-all duration-300 group-hover:text-white"
                       >
                         <li className="flex items-center space-x-3">
                           {/* <!-- Icon --> */}
@@ -398,12 +553,12 @@ const Planes = () => {
                           </span>
                         </li>
                       </ul>
-                      <Link
-                        href="#"
+                      <button
+                        onClick={() => openModal("MAS POPULAR")}
                         className="py-2 px-5 bg-[#7EB693] rounded-lg"
                       >
                         Escoger plan
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -412,6 +567,13 @@ const Planes = () => {
           </section>
         </div>
       </div>
+      {selectedPlan && (
+        <Modal
+          plan={selectedPlan}
+          onClose={closeModal}
+          onSubmit={handleFormSubmit}
+        />
+      )}
     </div>
   );
 };
