@@ -9,6 +9,8 @@ import AOS from "aos";
 import "aos/dist/aos.css"; // You can also use <link> for styles
 import ResponsivoNav from "./navegacion/ResponsivoNav";
 import RegisterPage from "../registro/page";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'; // Importa el CSS de react-toastify
 const Home = () => {
   useEffect(() => {
     const initAOS = async () => {
@@ -31,6 +33,7 @@ const Home = () => {
       <Clientes />
       <Contactanos />
       <Footer />
+      <ToastContainer />
     </div>
   );
 };

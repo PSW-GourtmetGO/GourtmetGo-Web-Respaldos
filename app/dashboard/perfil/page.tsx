@@ -390,7 +390,7 @@ const PerfilPage = () => {
                       message: "La dirección es obligatoria",
                     },
                     minLength: {
-                      value: 8,
+                      value: 4,
                       message: "La dirección debe tener al menos 8 caracteres",
                     },
                     pattern: {
