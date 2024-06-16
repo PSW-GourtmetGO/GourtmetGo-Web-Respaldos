@@ -46,7 +46,6 @@ const ModalC: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             });
             console.log(response.data);
 
-            // Actualiza el estado de categorias con el nuevo valor de ver
             setCategorias((prevCategorias) =>
                 prevCategorias.map((categoria) =>
                     categoria.id === categoriaId ? { ...categoria, ver: nuevaSeleccion } : categoria
@@ -62,36 +61,53 @@ const ModalC: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 progress: undefined,
                 theme: "dark",
                 transition: Bounce,
-              });
+            });
         } catch (error) {
             toast.error(
                 "Hubo un problema al procesar la información. Intentalo mas tarde.",
                 {
-                  position: "top-right",
-                  autoClose: 3000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "dark",
-                  transition: Bounce,
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Bounce,
                 }
-              );
+            );
             console.error('Error al obtener las características:', error);
         }
     };
 
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    const handleEliminarClick = (categoriaId: number) => {
+        toast.dark(
+            <div>
+                <p className="mb-5">¿Estás seguro de que quieres eliminar esta categoría?</p>
+                <button className="border mr-2 p-2 rounded-md bg-[#a31616]" onClick={() => { handleDeleteCategory(categoriaId), toast.dismiss(); }}>Sí</button>
+                <button className="border ml-2 p-2 rounded-md bg-[#16a34a]" onClick={() => toast.dismiss()}>No</button>
+            </div>,
+            {
+                position: "top-right",
+                autoClose: false,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            }
+        );
+    };
+
     const handleDeleteCategory = async (eliminarID: number) => {
-        const confirmacion = window.confirm("¿Estás seguro de que quieres eliminar esta categoría?");
-    
-        if (!confirmacion) {
-            return; // Si el usuario cancela, no se ejecuta la eliminación
-        }
-    
         try {
             const response = await axios.delete(`http://localhost:4500/api/Web/categoria/${eliminarID}`, {});
-    
+
             toast.success("Categoria eliminada correctamente", {
                 position: "top-right",
                 autoClose: 3000,
@@ -103,7 +119,7 @@ const ModalC: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 theme: "dark",
                 transition: Bounce,
             });
-    
+
             setCategorias((prevCategorias) =>
                 prevCategorias.filter((categoria) => categoria.id !== eliminarID)
             );
@@ -125,7 +141,7 @@ const ModalC: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             console.error('Error al obtener las características:', error);
         }
     };
-    
+
 
     const handleAddCategory = () => {
         setShowAdd(true);
@@ -155,7 +171,7 @@ const ModalC: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 progress: undefined,
                 theme: "dark",
                 transition: Bounce,
-              });
+            });
 
             console.log(response.data);
 
@@ -212,7 +228,7 @@ const ModalC: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                 progress: undefined,
                 theme: "dark",
                 transition: Bounce,
-              });
+            });
             console.log(response.data);
             const nuevaCategoria = response.data;
 
@@ -251,7 +267,7 @@ const ModalC: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
     useEffect(() => {
         setNombreValido(categoriaActualizar.trim().length >= 4);
-      }, [categoriaActualizar]);
+    }, [categoriaActualizar]);
 
     const handleUpdateNombreCategoriaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
@@ -335,7 +351,7 @@ const ModalC: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                                                     Eliminar
                                                                 </div>
                                                             }>
-                                                                <button className="btnAccion btnEliminar" onClick={() => handleDeleteCategory(categoria.id)}>
+                                                                <button className="btnAccion btnEliminar" onClick={() => handleEliminarClick(categoria.id)}>
                                                                     <svg className='iconoAccion' xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="white" d="M7 21q-.825 0-1.412-.587T5 19V6q-.425 0-.712-.288T4 5t.288-.712T5 4h4q0-.425.288-.712T10 3h4q.425 0 .713.288T15 4h4q.425 0 .713.288T20 5t-.288.713T19 6v13q0 .825-.587 1.413T17 21zM17 6H7v13h10zm-7 11q.425 0 .713-.288T11 16V9q0-.425-.288-.712T10 8t-.712.288T9 9v7q0 .425.288.713T10 17m4 0q.425 0 .713-.288T15 16V9q0-.425-.288-.712T14 8t-.712.288T13 9v7q0 .425.288.713T14 17M7 6v13z" /></svg>
                                                                 </button>
                                                             </Tooltip>
