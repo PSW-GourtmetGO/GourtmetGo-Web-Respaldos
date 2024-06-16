@@ -1,17 +1,16 @@
 "use client";
 import React, { useState, useEffect } from 'react'
-import { BiPencil, BiSearch } from 'react-icons/bi'
-import { FaRegTrashAlt } from 'react-icons/fa'
 import Modal from './componentes/modalempleado/page';
 import ModalUpdate from './componentes/modalActualizarEmpleado/page';
 import axios from 'axios';
 import { Tooltip } from '@nextui-org/tooltip';
 import "./page.scss";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
 const AdministradorPage = () => {
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
   const [empleados, setEmpleados] = useState<Empleado[]>([]);
@@ -33,6 +32,8 @@ const AdministradorPage = () => {
   };
   const handleModalClose = () => {
     setIsModalOpen(false);
+    window.location.reload();
+
   };
 
   const handleModalUpdateOpen = (empleado: Empleado) => {
@@ -68,6 +69,7 @@ const AdministradorPage = () => {
     estado: number;
   }
 
+
   useEffect(() => {
     const obtenerEmpleados = async () => {
       try {
@@ -81,29 +83,72 @@ const AdministradorPage = () => {
     obtenerEmpleados();
   }, [isModalOpen, isModalUpdateOpen]);
 
-  const eliminarEmpleado = async (empleado: Empleado) => {
+  const eliminarEmpleado = async (empleado: any) => {
     try {
-        // Preguntar al usuario si realmente desea eliminar al empleado
-        const confirmacion = window.confirm("¿Estás seguro de que deseas eliminar este empleado?");
-        
-        if (confirmacion) {
-            const response = await axios.delete(`http://localhost:4500/api/Web/empleado?empleado_id=${empleado.id}`);
-            setEmpleados(prevEmpleados => prevEmpleados.filter(e => e.id !== empleado.id));
-            toast.success("Empleado eliminado de manera exitosa",{
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        }
-    } catch (error) {
-        console.error('Error al obtener las estadísticas:', error);
-    }
-}
+      // Verificar si la confirmación ya está abierta
+      if (isConfirmOpen) return;
 
+      setIsConfirmOpen(true);
+
+      // Mostrar confirmación utilizando un toast personalizado
+      const confirmToast = (
+        <div className="grid justify-items-end">
+        <div className="grid grid-cols-2 gap-2">
+          <div className="col-span-2">
+            <p className="mb-6">¿Estás seguro de que deseas eliminar este empleado?</p>
+          </div>
+          <button className="bg-[#00AF66] hover:bg-[#00af66d0] text-white font-bold py-2 px-4 rounded mr-2" onClick={(e) => confirmarEliminacion(e, empleado)}>Confirmar</button>
+          <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-2" onClick={cancelarEliminacion}>Cancelar</button>
+        </div>
+      </div>
+      
+
+      );
+
+      toast.warn(confirmToast, {
+        position: "top-right", // Establecer la posición en top-right
+        autoClose: false,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        closeButton: false,
+        draggablePercent: 80,
+        onClose: () => {
+          toast.dismiss(); // Cerrar el toast después de la confirmación
+          setIsConfirmOpen(false); // Cambiar el estado cuando se cierra la confirmación
+        }
+      });
+    } catch (error) {
+      console.error('Error al eliminar el empleado:', error);
+    }
+  }
+
+
+
+  const confirmarEliminacion = async (e: React.MouseEvent<HTMLButtonElement>, empleado: Empleado) => {
+    try {
+      const response = await axios.delete(`http://localhost:4500/api/Web/empleado?empleado_id=${empleado.id}`);
+      setEmpleados(prevEmpleados => prevEmpleados.filter(e => e.id !== empleado.id));
+      toast.success("Empleado eliminado de manera exitosa", {
+        position: "top-right",
+        autoClose: 7000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      toast.dismiss(); // Cerrar el toast después de la confirmación
+    } catch (error) {
+      console.error('Error al obtener las estadísticas:', error);
+    }
+  }
+
+  const cancelarEliminacion = () => {
+    toast.dismiss(); // Cerrar el toast si el usuario cancela
+  }
 
   const restaurante = localStorage.getItem('restauranteNOMBRE');
 
@@ -164,7 +209,7 @@ const AdministradorPage = () => {
           </thead>
           <tbody>
             {empleados.map((empleado: Empleado, index: number) => (
-              <tr className="bg-transparent text-gray-800">
+              <tr key={empleado.id} className="bg-transparent text-gray-800"> {/* Agrega la prop key con un valor único, como el ID del empleado */}
                 <td className="py-2 px-4">
                   <span>{empleado.nombre}</span>
                 </td>
@@ -178,7 +223,7 @@ const AdministradorPage = () => {
                       </div>
                     }>
                       <button className="btnAccion btnEditar" onClick={() => handleModalUpdateOpen(empleado)}>
-                        <svg className='iconoAccion' xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="white" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h6.525q.5 0 .75.313t.25.687t-.262.688T11.5 5H5v14h14v-6.525q0-.5.313-.75t.687-.25t.688.25t.312.75V19q0 .825-.587 1.413T19 21zm4-7v-2.425q0-.4.15-.763t.425-.637l8.6-8.6q.3-.3.675-.45t.75-.15q.4 0 .763.15t.662.45L22.425 3q.275.3.425.663T23 4.4t-.137.738t-.438.662l-8.6 8.6q-.275.275-.637.438t-.763.162H10q-.425 0-.712-.288T9 14m12.025-9.6l-1.4-1.4zM11 13h1.4l5.8-5.8l-.7-.7l-.725-.7L11 11.575zm6.5-6.5l-.725-.7zl.7.7z"/></svg>
+                        <svg className='iconoAccion' xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="white" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h6.525q.5 0 .75.313t.25.687t-.262.688T11.5 5H5v14h14v-6.525q0-.5.313-.75t.687-.25t.688.25t.312.75V19q0 .825-.587 1.413T19 21zm4-7v-2.425q0-.4.15-.763t.425-.637l8.6-8.6q.3-.3.675-.45t.75-.15q.4 0 .763.15t.662.45L22.425 3q.275.3.425.663T23 4.4t-.137.738t-.438.662l-8.6 8.6q-.275.275-.637.438t-.763.162H10q-.425 0-.712-.288T9 14m12.025-9.6l-1.4-1.4zM11 13h1.4l5.8-5.8l-.7-.7l-.725-.7L11 11.575zm6.5-6.5l-.725-.7zl.7.7z" /></svg>
                       </button>
                     </Tooltip>
                     <Tooltip content={
@@ -196,7 +241,7 @@ const AdministradorPage = () => {
             ))}
           </tbody>
         </table>
-            <ToastContainer />
+        <ToastContainer />
       </div>
       <Modal isOpen={isModalOpen} onClose={handleModalClose} />
       <ModalUpdate isOpen={isModalUpdateOpen} onClose={handleModalUpdateClose} Datos={data} setDatos={setData} />
