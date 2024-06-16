@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent, useRef } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useRef, useEffect } from 'react';
 import axios from 'axios';
 import "./page.scss";
 import { Bounce, ToastContainer, toast } from "react-toastify";
@@ -39,6 +39,15 @@ const ModalUpdate: React.FC<ModalUpdate> = ({ isOpen, onClose, Datos, setDatos }
         contrasenia: '',
         estado: ''
     });
+
+    useEffect(() => {
+        if (Datos.fecha_Nacimiento && !/^\d{4}-\d{2}-\d{2}$/.test(Datos.fecha_Nacimiento)) {
+            setDatos(prevDatos => ({
+                ...prevDatos,
+                fecha_Nacimiento: new Date(prevDatos.fecha_Nacimiento).toISOString().split('T')[0]
+            }));
+        }
+    }, [Datos.fecha_Nacimiento, setDatos]);
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -116,7 +125,7 @@ const ModalUpdate: React.FC<ModalUpdate> = ({ isOpen, onClose, Datos, setDatos }
                 draggable: true,
                 progress: undefined,
             });
-           
+
         } catch (error) {
             toast.error("Hubo un problema con el servidor", {
                 position: "top-right",
@@ -148,7 +157,9 @@ const ModalUpdate: React.FC<ModalUpdate> = ({ isOpen, onClose, Datos, setDatos }
                                 <form onSubmit={handleSubmit}>
                                     {['cedula', 'fecha_Nacimiento', 'nombre', 'apellido', 'direccion', 'telefono', 'correo'].map((field, index) => (
                                         <div className="ingresos" key={index}>
-                                            <label htmlFor={field} className="label">{field.replace('_', ' ').replace(/\b\w/g, (l) => l.toUpperCase())}:</label>
+                                            <label htmlFor={field} className="label">
+                                                {field.replace('_', ' ').replace(/\b\w/g, (l) => l.toUpperCase())}:
+                                            </label>
                                             <div className="contenedorIngreso">
                                                 <input
                                                     type={field === 'fecha_Nacimiento' ? 'date' : field === 'correo' ? 'email' : field === 'contrasenia' ? 'password' : 'text'}

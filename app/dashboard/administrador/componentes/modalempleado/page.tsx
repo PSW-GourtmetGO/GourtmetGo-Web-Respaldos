@@ -4,6 +4,8 @@ import axios from 'axios';
 import "./page.scss";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BsEye, BsEyeSlash } from 'react-icons/bs'; // Importamos los iconos de react-icons
+
 
 
 interface ModalProps {
@@ -41,6 +43,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
+        setFormData({ ...formData, [e.target.name]: e.target.value });
         setFormData({
             ...formData,
             [name]: value
@@ -105,7 +108,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         if (formIsValid) {
             guardarEmpleado();
         } else {
-            toast.warning("Por favor, corrija los errores antes de enviar",{
+            toast.warning("Por favor, corrija los errores antes de enviar", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: true,
@@ -120,18 +123,30 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
     const guardarEmpleado = async () => {
         try {
             const response = await axios.post(`http://localhost:4500/api/Web/empleado?restaurante_id=${localStorage.getItem('restauranteID')}`, formData);
-            toast.success("Empleado creado de manera exitosa",{
+            toast.success("Empleado creado de manera exitosa", {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 7000,
                 hideProgressBar: true,
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
             })
+            setFormData({
+                cedula: '',
+                nombre: '',
+                apellido: '',
+                fecha_Nacimiento: '',
+                direccion: '',
+                telefono: '',
+                correo: '',
+                contrasenia: '',
+
+
+            });
             onClose();
         } catch (error) {
-            toast.error("Hubo un problema con el servidor",{
+            toast.error("Hubo un problema con el servidor", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: true,
@@ -142,6 +157,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             })
         }
     };
+    const [showPassword, setShowPassword] = useState(false);
+
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     return (
         <div>
             {isOpen && (
@@ -160,10 +182,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                 <form onSubmit={handleSubmit}>
                                     {['cedula', 'nombre', 'apellido', 'fecha_Nacimiento', 'direccion', 'telefono', 'correo', 'contrasenia'].map((field, index) => (
                                         <div className="ingresos" key={index}>
-                                            <label htmlFor={field} className="label">{field.replace('_', ' ').replace(/\b\w/g, (l) => l.toUpperCase())}:</label>
+                                            <label htmlFor={field} className="label">
+                                                {field.replace('_', ' ').replace(/\b\w/g, (l) => l.toUpperCase())}:
+                                            </label>
                                             <div className="contenedorIngreso">
                                                 <input
-                                                    type={field === 'fecha_Nacimiento' ? 'date' : field === 'correo' ? 'email' : field === 'contrasenia' ? 'password' : 'text'}
+                                                    type={field === 'fecha_Nacimiento' ? 'date' : field === 'correo' ? 'email' : field === 'contrasenia' ? (showPassword ? 'text' : 'password') : 'text'}
                                                     id={field}
                                                     name={field}
                                                     value={formData[field]}
@@ -171,18 +195,28 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
                                                     className={`ingreso ${errors[field] ? 'error' : ''}`}
                                                     required
                                                 />
+                                                {field === 'contrasenia' && (
+                                                    <button type="button" onClick={togglePasswordVisibility} className="togglePassword">
+                                                        {showPassword ? (
+                                                            <BsEye className="iconoIngreso" />
+                                                        ) : (
+                                                            <BsEyeSlash className="iconoIngreso" />
+                                                        )}
+                                                    </button>
+                                                )}
                                             </div>
                                             {errors[field] && <div className="error red-text">{errors[field]}</div>}
-
                                         </div>
                                     ))}
                                 </form>
                             </div>
                         </div>
+
+
                         <div className="botones">
                             <button type="submit" onClick={guardarEmpleado} className="botonVerde">Guardar</button>
                         </div>
-                        <ToastContainer/>
+                        <ToastContainer />
                     </div>
                 </div>
             )}
