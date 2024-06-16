@@ -5,6 +5,8 @@ import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
 import Cliente from "@/public/imagenes/clientes.svg";
 import Mujer from "@/public/imagenes/mujer2.svg";
+import Juan from "@/public/imagenes/juan.svg";
+import Alex from "@/public/imagenes/alex.svg";
 import { FaStar } from "react-icons/fa6";
 const responsive = {
   desktop: {
@@ -80,15 +82,16 @@ const Clientes = () => {
                     </div>
                     <div className="w-[250px]">
                       <span className="text-sm text-[#5C6574]">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Error dolorem fugit pariatur ullam quidem obcaecati
-                        corporis soluta neque, blanditiis totam similique sequi
-                        reiciendis quis fuga commodi tenetur at? Vel, a!
+                        Desde que comenzamos a usar GourmetGo, la gestión de
+                        nuestro restaurante ha mejorado significativamente. ¡Muy
+                        recomendable!
                       </span>
                     </div>
 
                     <div className="flex mt-4 md:mt-6">
-                      <span className="font-bold ">Ama Ampomah</span>
+                      <span className="font-bold ">
+                        Lucía R., Dueña de Bistro Central
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -96,8 +99,8 @@ const Clientes = () => {
                 <div className="lg:w-[455px] lg:h-[300px] bg-white border border-gray-200 rounded-lg shadow-xl dark:bg-white rounded-tl-[70px] rounded-br-[70px] rounded-tr-[30px] rounded-bl-[40px]">
                   <div className="flex flex-col items-center pb-10">
                     <Image
-                      src={Mujer}
-                      alt="mujer"
+                      src={Alex}
+                      alt="alex"
                       className="w-24 h-24 mb-2 rounded-full shadow-lg"
                     ></Image>
                     <div className="flex mb-3">
@@ -109,15 +112,15 @@ const Clientes = () => {
                     </div>
                     <div className="w-[250px]">
                       <span className="text-sm text-[#5C6574]">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Error dolorem fugit pariatur ullam quidem obcaecati
-                        corporis soluta neque, blanditiis totam similique sequi
-                        reiciendis quis fuga commodi tenetur at? Vel, a!
+                        Implementar GourmetGo en nuestra cadena de restaurantes
+                        ha sido una excelente decisión. ¡Estamos encantados!
                       </span>
                     </div>
 
                     <div className="flex mt-4 md:mt-6">
-                      <span className="font-bold ">Ama Ampomah</span>
+                      <span className="font-bold ">
+                        Alex G., Propietario de Restaurante La Cabaña
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -125,8 +128,8 @@ const Clientes = () => {
                 <div className="lg:w-[455px] lg:h-[300px] bg-white border border-gray-200 rounded-lg shadow-xl dark:bg-white rounded-tl-[70px] rounded-br-[70px] rounded-tr-[30px] rounded-bl-[40px]">
                   <div className="flex flex-col items-center pb-10">
                     <Image
-                      src={Mujer}
-                      alt="mujer"
+                      src={Juan}
+                      alt="juan"
                       className="w-24 h-24 mb-2 rounded-full shadow-lg"
                     ></Image>
                     <div className="flex mb-3">
@@ -138,15 +141,15 @@ const Clientes = () => {
                     </div>
                     <div className="w-[250px]">
                       <span className="text-sm text-[#5C6574]">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Error dolorem fugit pariatur ullam quidem obcaecati
-                        corporis soluta neque, blanditiis totam similique sequi
-                        reiciendis quis fuga commodi tenetur at? Vel, a!
+                        GourmetGo ha revolucionado la forma en que manejamos la
+                        administracion de nuestro restaurante. ¡Increíble!
                       </span>
                     </div>
 
                     <div className="flex mt-4 md:mt-6">
-                      <span className="font-bold ">Ama Ampomah</span>
+                      <span className="font-bold ">
+                        Juan P., Gerente de Operaciones en Sabores del Mundo
+                      </span>
                     </div>
                   </div>
                 </div>

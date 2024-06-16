@@ -20,10 +20,12 @@ const Footer = () => {
               </Link>
               <div className="flex mt-2">
                 <p className="w-[35%] text-[#5C6574] text-justify ">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Nihil libero in voluptatum iste accusantium dolorum, omnis
-                  ducimus necessitatibus architecto quis deserunt beatae totam
-                  amet laborum incidunt exercitationem neque obcaecati dolorem?
+                  GourmetGo es una plataforma integral de gestión de
+                  restaurantes diseñada para optimizar y simplificar cada
+                  aspecto de tu negocio gastronómico. Desde pequeños cafés hasta
+                  grandes cadenas de restaurantes, GourmetGo ofrece las
+                  herramientas necesarias para llevar tu gestión al siguiente
+                  nivel.
                 </p>
               </div>
             </div>
@@ -93,9 +95,9 @@ const Footer = () => {
           <div className="sm:flex sm:items-center sm:justify-between">
             <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
               © 2024{" "}
-              <a href="https://flowbite.com" className="hover:underline">
+              <Link href={"/#"}  className="hover:underline">
                 Gourmet Go™
-              </a>
+              </Link>
               . Todos los derechos reservados.
             </span>
             <div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
