@@ -54,20 +54,21 @@ const Noticias = () => {
             </h1>
             <div className="mt-3 ml-20 w-[300px] text-justify">
               <span>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Debitis ipsa repudiandae quaerat incidunt? Iste, eaque. Cum,
-                cumque reprehenderit porro deleniti dolor modi nisi,
-                perspiciatis earum voluptas, expedita obcaecati temporibus ab?
+                Bienvenidos a GourmetGo, tu solución integral para la gestión de
+                restaurantes. Nuestra plataforma está diseñada para simplificar
+                y optimizar cada aspecto de tu negocio, permitiéndote enfocarte
+                en lo que realmente importa: ofrecer la mejor comida a tus
+                clientes.
               </span>
             </div>
             <div className="flex mt-4 ml-20 gap-4 ">
               {/* Botones */}
-              <Link href="/">
+              <Link href="/registro">
                 <div className="px-6 py-2 bg-[#274C5B] text-white rounded-br-xl rounded-tl-xl rounded-tr-sm rounded-bl-sm">
                   <h3 style={{ fontFamily: "David Libre" }}>Menu</h3>
                 </div>
               </Link>
-              <Link href="/">
+              <Link href="/registro">
                 <div className="px-6 py-2 bg-[#7EB693] text-white rounded-br-xl rounded-tl-xl rounded-tr-sm rounded-bl-sm">
                   <h3 style={{ fontFamily: "David Libre" }}>Haga su pedido</h3>
                 </div>
@@ -100,26 +101,22 @@ const Noticias = () => {
               className="text-[60px] leading-[72px] max-w-md text-center font-bold"
               style={{ fontFamily: "David Libre" }}
             >
-              Proporcionamos la mejor comida para ti
+              Llevamos tu restaurante al siguiente nivel
             </h1>
-            <div className="mt-3 ml-20 w-[300px] text-justify">
+            <div className="mt-3 ml-[30px] w-[400px] text-justify">
               <span>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Debitis ipsa repudiandae quaerat incidunt? Iste, eaque. Cum,
-                cumque reprehenderit porro deleniti dolor modi nisi,
-                perspiciatis earum voluptas, expedita obcaecati temporibus ab?
+                Descubre como nuestro sistema puede ayudarte a llevar tu
+                restaurante al siguiente nivel. Innovamos para que tú puedas
+                enfocarte en lo que mejor haces: proporcionar una experiencia
+                culinaria excepcional. Únete a la comunidad de restauranteros
+                que ya están transformando sus negocios con GourmetGo.
               </span>
             </div>
-            <div className="flex mt-4 ml-20 gap-4 ">
+            <div className="flex mt-4 ml-[16%]  ">
               {/* Botones */}
-              <Link href="/">
-                <div className="px-6 py-2 bg-[#274C5B] text-white rounded-br-xl rounded-tl-xl rounded-tr-sm rounded-bl-sm">
-                  <h3 style={{ fontFamily: "David Libre" }}>Menu</h3>
-                </div>
-              </Link>
-              <Link href="/">
-                <div className="px-6 py-2 bg-[#7EB693] text-white rounded-br-xl rounded-tl-xl rounded-tr-sm rounded-bl-sm">
-                  <h3 style={{ fontFamily: "David Libre" }}>Haga su pedido</h3>
+              <Link href="/registro">
+                <div className="px-[100px] py-2 bg-[#274C5B] text-white rounded-br-xl rounded-tl-xl rounded-tr-sm rounded-bl-sm">
+                  <h3 style={{ fontFamily: "David Libre" }}>Iniciar ahora</h3>
                 </div>
               </Link>
             </div>

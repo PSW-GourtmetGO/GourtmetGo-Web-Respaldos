@@ -181,7 +181,7 @@ const Planes = () => {
                   data-aos="fade-left"
                   data-aos-anchor-placement="top-center"
                 >
-                  <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:text-white hover:bg-[#274c5b] hover:text-white transition-all duration-300">
+                  <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:text-white hover:bg-[#274c5b] hover:text-white transition-all duration-300 min-h-[607px]">
                     <div className="group">
                       <h4 className="text-right text-sm font-bold text-black transition-all duration-300 group-hover:text-[#ff4e9d]">
                         BASICO
@@ -190,14 +190,15 @@ const Planes = () => {
                         Inicio
                       </h3>
                       <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                        Best option for personal use & for your next project.
+                        Ideal para pequeños restaurantes y cafeterías que recién
+                        comienzan su camino hacia la digitalización.
                       </p>
                       <div className="flex justify-center items-baseline my-8 text-black">
                         <span className="mr-2 text-5xl font-extrabold text-black transition-all duration-300 group-hover:text-white">
-                          $19
+                          $9,99
                         </span>
                         <span className="text-gray-500 dark:text-gray-400">
-                          /month
+                          /mes
                         </span>
                       </div>
                       {/* <!-- List --> */}
@@ -219,7 +220,7 @@ const Planes = () => {
                               clipRule="evenodd"
                             ></path>
                           </svg>
-                          <span>Individual configuration</span>
+                          <span>Acceso al sistema base</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           {/* <!-- Icon --> */}
@@ -235,7 +236,7 @@ const Planes = () => {
                               clipRule="evenodd"
                             ></path>
                           </svg>
-                          <span>No setup, or hidden fees</span>
+                          <span>Gestión de empleados limitados</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           {/* <!-- Icon --> */}
@@ -252,8 +253,8 @@ const Planes = () => {
                             ></path>
                           </svg>
                           <span>
-                            Team size:{" "}
-                            <span className="font-semibold">1 developer</span>
+                            Categorías disponibles:{" "}
+                            <span className="font-semibold">3 categorias</span>
                           </span>
                         </li>
                         <li className="flex items-center space-x-3">
@@ -271,8 +272,8 @@ const Planes = () => {
                             ></path>
                           </svg>
                           <span>
-                            Premium support:{" "}
-                            <span className="font-semibold">6 months</span>
+                            Platos disponibles:{" "}
+                            <span className="font-semibold">25 platos</span>
                           </span>
                         </li>
                         <li className="flex items-center space-x-3">
@@ -290,8 +291,10 @@ const Planes = () => {
                             ></path>
                           </svg>
                           <span>
-                            Free updates:{" "}
-                            <span className="font-semibold">6 months</span>
+                            Actualizaciones gratuitas:{" "}
+                            <span className="font-semibold">
+                              6 primeros meses
+                            </span>
                           </span>
                         </li>
                       </ul>
@@ -310,7 +313,7 @@ const Planes = () => {
                   data-aos-delay="200"
                   data-aos-anchor-placement="top-center"
                 >
-                  <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:text-white hover:bg-[#274c5b] hover:text-white transition-all duration-300">
+                  <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:text-white hover:bg-[#274c5b] hover:text-white transition-all duration-300 min-h-[607px]">
                     <div className="group">
                       <h4 className="text-right text-sm font-bold text-black transition-all duration-300 group-hover:text-[#ff7a29]">
                         POPULAR
@@ -319,14 +322,15 @@ const Planes = () => {
                         Profesional
                       </h3>
                       <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                        Best option for personal use & for your next project.
+                        Ideal para restaurantes medianos que buscan optimizar
+                        sus operaciones y mejorar la experiencia del cliente.
                       </p>
                       <div className="flex justify-center items-baseline my-8 text-black">
                         <span className="mr-2 text-5xl font-extrabold text-black transition-all duration-300 group-hover:text-white">
                           $54
                         </span>
                         <span className="text-gray-500 dark:text-gray-400">
-                          /month
+                          /mes
                         </span>
                       </div>
                       {/* <!-- List --> */}
@@ -348,7 +352,7 @@ const Planes = () => {
                               clipRule="evenodd"
                             ></path>
                           </svg>
-                          <span>Individual configuration</span>
+                          <span>Acceso al sistema base</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           {/* <!-- Icon --> */}
@@ -364,7 +368,7 @@ const Planes = () => {
                               clipRule="evenodd"
                             ></path>
                           </svg>
-                          <span>No setup, or hidden fees</span>
+                          <span>Mayor número de gestión en empleados</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           {/* <!-- Icon --> */}
@@ -381,8 +385,10 @@ const Planes = () => {
                             ></path>
                           </svg>
                           <span>
-                            Team size:{" "}
-                            <span className="font-semibold">1 developer</span>
+                            Categorías Disponibles:{" "}
+                            <span className="font-semibold">
+                              hasta 10 categorías
+                            </span>
                           </span>
                         </li>
                         <li className="flex items-center space-x-3">
@@ -400,8 +406,10 @@ const Planes = () => {
                             ></path>
                           </svg>
                           <span>
-                            Premium support:{" "}
-                            <span className="font-semibold">6 months</span>
+                            Platos Disponibles:{" "}
+                            <span className="font-semibold">
+                              gestiona hasta 100 platos
+                            </span>
                           </span>
                         </li>
                         <li className="flex items-center space-x-3">
@@ -419,8 +427,11 @@ const Planes = () => {
                             ></path>
                           </svg>
                           <span>
-                            Free updates:{" "}
-                            <span className="font-semibold">6 months</span>
+                            Actualizaciones Gratuitas:{" "}
+                            <span className="font-semibold">
+                              acceso a actualizaciones gratuitas durante el
+                              primer año
+                            </span>
                           </span>
                         </li>
                       </ul>
@@ -439,7 +450,7 @@ const Planes = () => {
                   data-aos-delay="400"
                   data-aos-anchor-placement="top-center"
                 >
-                  <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:text-white hover:bg-[#274c5b] hover:text-white transition-all duration-300">
+                  <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:text-white hover:bg-[#274c5b] hover:text-white transition-all duration-300 min-h-[600px]">
                     <div className="group">
                       <h4 className="text-right text-sm font-bold text-black transition-all duration-300 group-hover:text-[#b7ffcf]">
                         MAS POPULAR
@@ -448,14 +459,16 @@ const Planes = () => {
                         Empresa
                       </h3>
                       <p className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                        Best option for personal use & for your next project.
+                        Solución definitiva para grandes cadenas de restaurantes
+                        y franquicias. Este plan ofrece una gestión completa y
+                        personalizada.
                       </p>
                       <div className="flex justify-center items-baseline my-8 text-black">
                         <span className="mr-2 text-5xl font-extrabold text-black transition-all duration-300 group-hover:text-white">
                           $89
                         </span>
                         <span className="text-gray-500 dark:text-gray-400">
-                          /month
+                          /mes
                         </span>
                       </div>
                       {/* <!-- List --> */}
@@ -477,7 +490,7 @@ const Planes = () => {
                               clipRule="evenodd"
                             ></path>
                           </svg>
-                          <span>Individual configuration</span>
+                          <span>Acceso al Sistema Completo</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           {/* <!-- Icon --> */}
@@ -493,7 +506,7 @@ const Planes = () => {
                               clipRule="evenodd"
                             ></path>
                           </svg>
-                          <span>No setup, or hidden fees</span>
+                          <span>Gestión de Empleados Ilimitada</span>
                         </li>
                         <li className="flex items-center space-x-3">
                           {/* <!-- Icon --> */}
@@ -510,8 +523,8 @@ const Planes = () => {
                             ></path>
                           </svg>
                           <span>
-                            Team size:{" "}
-                            <span className="font-semibold">1 developer</span>
+                            Categorías Disponibles:{" "}
+                            <span className="font-semibold">ilimitado</span>
                           </span>
                         </li>
                         <li className="flex items-center space-x-3">
@@ -529,8 +542,8 @@ const Planes = () => {
                             ></path>
                           </svg>
                           <span>
-                            Premium support:{" "}
-                            <span className="font-semibold">6 months</span>
+                            Platos Disponibles:{" "}
+                            <span className="font-semibold">ilimitado</span>
                           </span>
                         </li>
                         <li className="flex items-center space-x-3">
@@ -548,8 +561,10 @@ const Planes = () => {
                             ></path>
                           </svg>
                           <span>
-                            Free updates:{" "}
-                            <span className="font-semibold">6 months</span>
+                            Actualizaciones Gratuitas:{" "}
+                            <span className="font-semibold">
+                              actualizaciones al día
+                            </span>
                           </span>
                         </li>
                       </ul>
@@ -567,6 +582,7 @@ const Planes = () => {
           </section>
         </div>
       </div>
+
       {selectedPlan && (
         <Modal
           plan={selectedPlan}
