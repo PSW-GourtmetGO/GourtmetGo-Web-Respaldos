@@ -24,7 +24,7 @@ interface ModalProps {
     visible: string;
     categoria: number;
     accion: string;
-    imagen:string;
+    imagen: string;
   };
   setData: React.Dispatch<
     React.SetStateAction<{
@@ -34,7 +34,7 @@ interface ModalProps {
       visible: string;
       categoria: number;
       accion: string;
-      imagen:string;
+      imagen: string;
     }>
   >;
 }
@@ -104,7 +104,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, Datos, setData }) => {
       console.log(imagenPlato)
 
       let nuevaImagen = null
-      if (imagenPlato != null){
+      if (imagenPlato != null) {
         nuevaImagen = await uploadPlate(
           imagenPlato,
           `platos/${categoria.nombre}`,
@@ -112,7 +112,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, Datos, setData }) => {
         );
         console.log(nuevaImagen)
         console.log("arriba")
-      } 
+      }
 
       console.log(nuevaImagen)
 
@@ -181,9 +181,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, Datos, setData }) => {
 
       let nuevaImagen = ''
 
-      if (imagenPlato == null){
+      if (imagenPlato == null) {
         nuevaImagen = imagenAnterior
-      }else{
+      } else {
         nuevaImagen = await uploadPlate(
           imagenPlato,
           `platos/${categoriaSeleccionada.nombre}`,
@@ -233,14 +233,31 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, Datos, setData }) => {
     }
   };
 
-  const eliminarPlato = async () => {
-    const confirmacion = window.confirm(
-      "¿Estás seguro de que quieres eliminar este plato?"
-    );
+  const [isDeleting, setIsDeleting] = useState(false);
 
-    if (!confirmacion) {
-      return;
-    }
+  const handleEliminarClick = () => {
+    toast.dark(
+      <div>
+        <p className="mb-5">¿Estás seguro de que quieres eliminar este plato?</p>
+        <button className="border mr-2 p-2 rounded-md bg-[#a31616]" onClick={() => { eliminarPlato(); toast.dismiss(); }}>Sí</button>
+        <button className="border ml-2 p-2 rounded-md bg-[#16a34a]" onClick={() => toast.dismiss()}>No</button>
+      </div>,
+      {
+        position: "top-right",
+        autoClose: false,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      }
+    );
+  };
+
+  const eliminarPlato = async () => {
+    setIsDeleting(true);
 
     try {
       const response = await axios.delete(
@@ -581,16 +598,16 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, Datos, setData }) => {
               <button
                 type="button"
                 onClick={() => {
-                    setFormData({
-                      id: 0,
-                      nombre: "",
-                      precio: 0.5,
-                      visible: "true",
-                      categoria: 1,
-                    });
-                    setNombreValido(false);
-                    onClose();
-                  }}
+                  setFormData({
+                    id: 0,
+                    nombre: "",
+                    precio: 0.5,
+                    visible: "true",
+                    categoria: 1,
+                  });
+                  setNombreValido(false);
+                  onClose();
+                }}
                 className="btnAtras"
               >
                 <svg
@@ -757,7 +774,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, Datos, setData }) => {
               </button>
               <button
                 type="button"
-                onClick={eliminarPlato}
+                onClick={handleEliminarClick}
                 className="botonRojo"
               >
                 Eliminar

@@ -31,22 +31,29 @@ function PedidosPage() {
     formState: { errors },
   } = useForm();
 
+  const obtenerPedidos = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:4500/api/Web/pedidos/${localStorage.getItem(
+          "restauranteID"
+        )}`
+      );
+      setPedidos(response.data);
+    } catch (error) {
+      console.error("Error al obtener los pedidos:", error);
+    }
+  };
+
   useEffect(() => {
-    const obtenerPedidos = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:4500/api/Web/pedidos/${localStorage.getItem(
-            "restauranteID"
-          )}`
-        );
-        setPedidos(response.data);
-      } catch (error) {
-        console.error("Error al obtener los pedidos:", error);
-      }
-    };
     obtenerPedidos();
-    setImg(localStorage.getItem('restauranteImagen') || "")
-  }, [modalOpen,pedidos]);
+    setImg(localStorage.getItem('restauranteImagen') || "");
+
+    const interval = setInterval(() => {
+      obtenerPedidos();
+    }, 60000); // 60000 ms = 1 minute
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [modalOpen]);
 
   const getColorByEstado = (estado: any) => {
     switch (estado) {
