@@ -30,7 +30,7 @@ const PagosPage = () => {
         const response = await axios.get(`http://localhost:4500/api/Web/propietario/paypal/${localStorage.getItem('restauranteID')}`);
         const datosPaypal = response.data[0];
         setValue('empresa', datosPaypal.nombre_tienda);
-        setValue('token', datosPaypal.token);
+        setValue('secret', datosPaypal.secret);
       } catch (error) {
         console.error('Error al obtener los datos del restaurante:', error);
       }
@@ -83,15 +83,15 @@ const PagosPage = () => {
                   htmlFor="contrasenia"
                   className=""
                 >
-                  Token:
+                  Secret:
                 </label>
                 <div className="contenedorIngreso">
                   <input
                     type="text"
-                    {...register("token", {
+                    {...register("secret", {
                       required: {
                         value: true,
-                        message: "token is required",
+                        message: "secret is required",
                       },
                     })}
                     className="ingreso"
