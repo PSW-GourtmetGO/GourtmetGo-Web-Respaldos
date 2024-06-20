@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState, FormEvent } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { TfiEmail } from "react-icons/tfi";
-import { toast } from "react-toastify";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import imgLogin from "../../public/imagenes/imgLogin.svg";
 import ResponsivoNav from "../componentes/navegacion/ResponsivoNav";
@@ -42,9 +42,34 @@ function Login() {
         }
         window.location.href = "/dashboard";
       } else {
-        alert("Credenciales incorrectas");
+        toast.error(
+          "Usuario o contraseña incorrectos. Inténtalo de nuevo.",
+          {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            transition: Bounce,
+          });
       }
     } catch (error) {
+      toast.error(
+        "Hubo un problema al procesar la información. Inténtalo más tarde.",
+        {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
       console.error("Error de red:", error);
       toast.error("Error al conectar con el servidor");
     }
@@ -124,6 +149,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -6,6 +6,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import pagosImagen from "../../../public/imagenes/PagosImagen.svg";
 import paypal from "../../../public/imagenes/paypal.svg";
 import "./page.scss";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const PagosPage = () => {
   const {
@@ -14,13 +16,34 @@ const PagosPage = () => {
     formState: { errors },
     setValue,
   } = useForm();
+  
   const onSubmit: SubmitHandler<any> = (data) => {
     axios.put(`http://localhost:4500/api/Web/propietario/paypal/${localStorage.getItem('restauranteID')}`, data)
       .then(response => {
-        alert("información almacenada");
+        toast.success("Información almacenada", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
       })
       .catch(error => {
-        alert("Hubo un problema al procesar la información. Intente más tarde");
+        toast.error("Hubo un problema al procesar la información. Intente más tarde", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
       });
   };
 
@@ -30,13 +53,14 @@ const PagosPage = () => {
         const response = await axios.get(`http://localhost:4500/api/Web/propietario/paypal/${localStorage.getItem('restauranteID')}`);
         const datosPaypal = response.data[0];
         setValue('empresa', datosPaypal.nombre_tienda);
-        setValue('token', datosPaypal.token);
+        setValue('secret', datosPaypal.secret);
       } catch (error) {
         console.error('Error al obtener los datos del restaurante:', error);
       }
     };
     obtenerDatosRestaurante();
   }, [setValue]);
+
   return (
     <div className="contenedorPaginasDashboard">
       <div className="encabezado">
@@ -53,14 +77,12 @@ const PagosPage = () => {
           <img className="imagenPagos" src="/imagenes/PagosImagen.svg" alt="" />
         </div>
         <div className="infoPagos">
-          <p className="parrafo1">Todas tus transacciones se realizan a través de paypal</p>
+          <p className="parrafo1">Todas tus transacciones se realizan a través de PayPal</p>
           <p className="parrafo2">Ingresa la información de PayPal</p>
           <div className="formularioPagos">
             <form className="" onSubmit={handleSubmit(onSubmit)}>
               <div>
-                <label
-                  htmlFor="ID"
-                  className="">
+                <label htmlFor="ID" className="">
                   Empresa:
                 </label>
                 <div className="contenedorIngreso">
@@ -69,36 +91,31 @@ const PagosPage = () => {
                     {...register("empresa", {
                       required: {
                         value: true,
-                        message: "empresa is required",
+                        message: "Empresa es requerida",
                       },
                     })}
                     className="ingreso"
                     placeholder="********"
                   />
-
                 </div>
               </div>
               <div>
-                <label
-                  htmlFor="contrasenia"
-                  className=""
-                >
-                  Token:
+                <label htmlFor="contrasenia" className="">
+                  Secret:
                 </label>
                 <div className="contenedorIngreso">
                   <input
                     type="text"
-                    {...register("token", {
+                    {...register("secret", {
                       required: {
                         value: true,
-                        message: "token is required",
+                        message: "Secret es requerido",
                       },
                     })}
                     className="ingreso"
                     placeholder="********"
                   />
                 </div>
-
               </div>
               <div className="btnPagos">
                 <button className="botonVerde">
@@ -109,6 +126,7 @@ const PagosPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
